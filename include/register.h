@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 15:40:23
- * @LastEditTime: 2022-02-15 17:39:52
+ * @LastEditTime: 2022-02-16 11:09:17
  * @FilePath: \naive-assembly\include\register.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -17,6 +17,8 @@ class Register{
         string name;
         int value;  // 32 bit signed integer, -2147483648 ~ 2147483647 
     public:
+        Register(){}
+        
         Register(string nname, int nvalue = 0);
         
         string get_name() const;
