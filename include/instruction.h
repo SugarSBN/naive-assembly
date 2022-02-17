@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 18:03:36
- * @LastEditTime: 2022-02-16 11:46:48
+ * @LastEditTime: 2022-02-17 11:30:49
  * @FilePath: \naive-assembly\include\instruction.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -10,6 +10,7 @@
 #define _INSTRUCTION_H
 
 #include"operand.h"
+#include<map>
 
 enum Opcode {
     ADDI,   // ADDI rt, rs, imm16;  rt <- rs + imm16                    000000 = 0
@@ -46,11 +47,17 @@ class Instruction{
         Opcode opt;
         vector<Operand> operands;
     public:
+        Instruction(){}
+        
         Instruction(Opcode nopt, vector<Operand> noperands);
         
-        Instruction(int bitcode);
+        Instruction(int bitcode, map<string, int> label_map);
 
-        int to_bitcode() const;
+        int to_bitcode(map<string, int> label_map) const;
+
+        Opcode get_opcode() const;
+
+        vector<Operand> get_operands() const;
 
         friend ostream & operator << (ostream & os, const Instruction & i);
 };

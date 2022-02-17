@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 18:11:24
- * @LastEditTime: 2022-02-16 11:35:18
+ * @LastEditTime: 2022-02-17 11:30:25
  * @FilePath: \naive-assembly\include\operand.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -10,8 +10,9 @@
 #define _OPERAND_H
 
 #include<vector>
+#include<map>
 #include<string>
-#include"../include/environment.h"
+#include"environment.h"
 
 using namespace std;
 
@@ -35,7 +36,9 @@ class Operand{
 
         Type get_type() const;
 
-        int get_val() const;
+        string get_val() const;
+
+        int get_val_bit(map<string, int> label_map) const;
 
         friend ostream & operator << (ostream & os, const Operand & op);
 };

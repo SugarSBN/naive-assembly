@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 19:17:29
- * @LastEditTime: 2022-02-16 11:51:23
+ * @LastEditTime: 2022-02-17 12:10:10
  * @FilePath: \naive-assembly\src\operand.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -43,9 +43,13 @@ Type Operand :: get_type() const{
     return type;
 }
 
-int Operand :: get_val() const{
+string Operand :: get_val() const{
+    return val;
+} 
+
+int Operand :: get_val_bit(map<string, int> label_map) const{
     if (type == Register)   return atoi(val.substr(1).c_str());
-    if (type == Label)  return atoi(val.c_str());
+    if (type == Label)  return label_map[val];
     if (type == Immediate)  return atoi(val.c_str());
     if (type == Address){
         int p = 0;

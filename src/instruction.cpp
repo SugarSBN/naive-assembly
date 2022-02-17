@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-16 10:12:51
- * @LastEditTime: 2022-02-16 11:46:54
+ * @LastEditTime: 2022-02-17 11:33:24
  * @FilePath: \naive-assembly\src\instruction.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -13,7 +13,7 @@ Instruction :: Instruction(Opcode nopt, vector<Operand> noperands){
     operands = noperands;
 }
 
-Instruction :: Instruction(int bitcode){
+Instruction :: Instruction(int bitcode, map<string, int> label_map){
     opt = Opcode((bitcode >> 26) & (0b111111));
     if (opt < 5){
         int rt = (bitcode >> 21) & (0b11111);
@@ -57,8 +57,15 @@ Instruction :: Instruction(int bitcode){
     }else
     if (opt == 17){
         int label = (bitcode >> 22) & (0b1111111111111111);
+        string lab;
+        for (map<string, int> :: iterator it = label_map.begin();it != label_map.end();it++){
+            if (it -> second == label){
+                lab = it -> first;
+                break;
+            }
+        }
         operands.resize(1);
-        operands[0] = Operand(Label, to_string(label));
+        operands[0] = Operand(Label, lab);
     }else
     if (opt == 18){
         int rt = (bitcode >> 21) & (0b11111);
@@ -74,25 +81,25 @@ Instruction :: Instruction(int bitcode){
     }
 }
 
-int Instruction :: to_bitcode() const{
+int Instruction :: to_bitcode(map<string, int> label_map) const{
     int ws, res;
     ws = 6; res = opt;
     for (int i = 0;i < operands.size();i++){
         if (operands[i].get_type() == Register){
             ws += 5;
-            res = (res << 5) + operands[i].get_val();
+            res = (res << 5) + operands[i].get_val_bit(label_map);
         }
         if (operands[i].get_type() == Label){
             ws += 16;
-            res = (res << 16) + operands[i].get_val();
+            res = (res << 16) + operands[i].get_val_bit(label_map);
         }
         if (operands[i].get_type() == Address){
             ws += 16 + 5;
-            res = (res << 21) + operands[i].get_val();
+            res = (res << 21) + operands[i].get_val_bit(label_map);
         }
         if (operands[i].get_type() == Immediate){
             ws += 16;
-            res = (res << 16) + operands[i].get_val();
+            res = (res << 16) + operands[i].get_val_bit(label_map);
         }
     }
     res <<= (32 - ws);
@@ -170,4 +177,12 @@ ostream & operator << (ostream & os, const Opcode & op){
             break;
     }
     return os;
+}
+
+Opcode Instruction :: get_opcode() const{
+    return opt;
+}
+
+vector<Operand> Instruction :: get_operands() const{
+    return operands;
 }
