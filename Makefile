@@ -25,4 +25,4 @@ src\\simos.o : src\\simos.cpp
 	g++ $< -c -o $@
 
 clean:
-	rm src\\*.o *.o
+	rm src\\*.o *.o *.exe

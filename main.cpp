@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 15:58:31
- * @LastEditTime: 2022-02-17 12:05:39
+ * @LastEditTime: 2022-02-18 09:43:00
  * @FilePath: \naive-assembly\main.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -20,6 +20,4 @@ using namespace std;
 int main(){
     SimOS os = SimOS("./boot.asm");
     os.boot();
-    
-    cout << os.get_env();
 }

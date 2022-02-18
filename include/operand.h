@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 18:11:24
- * @LastEditTime: 2022-02-17 11:30:25
+ * @LastEditTime: 2022-02-18 09:17:08
  * @FilePath: \naive-assembly\include\operand.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -32,7 +32,7 @@ class Operand{
         
         Operand(Type ntype, string nval);
 
-        int interprete(const Environment &e) const;
+        int interprete(const Environment &e, map<string, int> label_map) const;
 
         Type get_type() const;
 

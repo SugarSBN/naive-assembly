@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-16 10:12:51
- * @LastEditTime: 2022-02-17 11:33:24
+ * @LastEditTime: 2022-02-18 09:28:30
  * @FilePath: \naive-assembly\src\instruction.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -78,6 +78,9 @@ Instruction :: Instruction(int bitcode, map<string, int> label_map){
         operands.resize(2);
         operands[0] = Operand(Register, "$" + to_string(rt));
         operands[1] = Operand(Immediate, to_string(imm16));
+    }else
+    if (opt == 20){
+        operands.clear();
     }
 }
 
@@ -174,6 +177,9 @@ ostream & operator << (ostream & os, const Opcode & op){
             break;
         case LUI:
             os << "LUI";
+            break;
+        case RET:
+            os << "RET";
             break;
     }
     return os;

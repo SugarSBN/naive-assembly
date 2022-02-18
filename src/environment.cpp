@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 16:13:20
- * @LastEditTime: 2022-02-15 19:55:04
+ * @LastEditTime: 2022-02-18 09:49:28
  * @FilePath: \naive-assembly\src\environment.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -124,10 +124,10 @@ void Environment :: set_storage(int address, int value){
 
 ostream & operator << (ostream & os, const Environment & e){
     os << "General Registers: " << endl;
-    for (int i = 0;i < e.general_registers.size();i++)  os << e.general_registers[i] << endl;
+    for (int i = 0;i < e.general_registers.size();i++)  os << "$" << i << ", " << e.general_registers[i] << endl;
     os << "-------------------------------------------------------------------------" << endl;
     os << "Special Registers: " << endl;
-    for (int i = 0;i < e.special_registers.size();i++)  os << e.special_registers[i] << endl;
+    for (int i = 0;i < e.special_registers.size();i++)  os << "$" << i << ", " << e.special_registers[i] << endl;
     os << "-------------------------------------------------------------------------" << endl;
     os << "Size of storage = " << e.storage.size() << " * 32bit" << endl;
     for (int i = 0;i < e.storage.size() / 8;i++){

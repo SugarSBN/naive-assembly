@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 19:17:29
- * @LastEditTime: 2022-02-17 12:10:10
+ * @LastEditTime: 2022-02-18 09:17:26
  * @FilePath: \naive-assembly\src\operand.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -17,7 +17,7 @@ Operand :: Operand(Type ntype, string nval){
     val = nval;
 }
 
-int Operand :: interprete(const Environment &e) const{
+int Operand :: interprete(const Environment &e, map<string, int> label_map) const{
     int p, im;
     string reg;
     switch (type){
@@ -34,7 +34,7 @@ int Operand :: interprete(const Environment &e) const{
             reg = val.substr(p + 1, val.size() - p - 2);
             return e.query_storage(im + e.query_register(reg));
         case Label:
-            return atoi(val.c_str());
+            return label_map[val];
     }
     return 0;
 }

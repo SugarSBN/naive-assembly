@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 08:38:23
- * @LastEditTime: 2022-02-17 11:39:33
+ * @LastEditTime: 2022-02-18 10:03:51
  * @FilePath: \naive-assembly\include\simos.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -25,10 +25,14 @@ class SimOS{
         string boot_path;
         map<string, int> label_map;
 
+        void print_insts() const;
+        
     public:
         SimOS(string path = "./boot.asm");
 
         void boot();
+
+        void execute_one_command();
 
         Environment get_env() const;
     

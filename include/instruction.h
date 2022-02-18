@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 18:03:36
- * @LastEditTime: 2022-02-17 11:30:49
+ * @LastEditTime: 2022-02-18 09:27:41
  * @FilePath: \naive-assembly\include\instruction.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -37,7 +37,9 @@ enum Opcode {
 
     JAL,    // JAL Label;           ra <- PC + 1, PC <- (Label)         010001 = 17
     JR,     // JR rt;               PC <- rt                            010010 = 18
-    LUI,    // LUI rt, imm16;       rt <- imm16                         010011 = 19
+    LUI,    // LUI rt, imm16;       rt <- (imm16 << 16)                 010011 = 19
+
+    RET,    // RET;                 PC <- ra                            010100 = 20
 };
 
 ostream & operator << (ostream &os, const Opcode &op);

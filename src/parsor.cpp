@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 08:54:59
- * @LastEditTime: 2022-02-17 10:26:02
+ * @LastEditTime: 2022-02-18 09:46:27
  * @FilePath: \naive-assembly\src\parsor.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -60,6 +60,7 @@ Parsor :: Parsor(string path){
         if (par[0] == "JAL") {opt = JAL; operands = vector<Type> {Label}; } else
         if (par[0] == "JR") {opt = JR;  operands = vector<Type> {Register};} else
         if (par[0] == "LUI") {opt = LUI; operands = vector<Type> {Register, Immediate}; } else
+        if (par[0] == "RET") {opt = RET; operands.clear();} else
         cout << "Error! line " << pos << " : Unknown Opcode." << endl;
 
         if (par.size() != operands.size() + 1)  cout << "Error! line " << pos << " : invalid number of operands." << endl;  
