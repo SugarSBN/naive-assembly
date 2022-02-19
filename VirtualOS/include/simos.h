@@ -1,8 +1,8 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 08:38:23
- * @LastEditTime: 2022-02-18 10:03:51
- * @FilePath: \naive-assembly\include\simos.h
+ * @LastEditTime: 2022-02-19 10:12:01
+ * @FilePath: \naive-assembly\VirtualOS\include\simos.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
@@ -33,6 +33,10 @@ class SimOS{
         void boot();
 
         void execute_one_command();
+
+        vector<Instruction> get_insts() const;
+
+        map<string, int> get_label_map() const;
 
         Environment get_env() const;
     

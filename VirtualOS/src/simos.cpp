@@ -1,8 +1,8 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 10:27:17
- * @LastEditTime: 2022-02-18 10:19:07
- * @FilePath: \naive-assembly\src\simos.cpp
+ * @LastEditTime: 2022-02-19 10:12:34
+ * @FilePath: \naive-assembly\VirtualOS\src\simos.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
@@ -179,4 +179,12 @@ void SimOS :: print_insts() const{
         if (i == e.query_register("PC"))    cout << " <--- " << endl;
         else cout << endl;
     }
+}
+
+vector<Instruction> SimOS :: get_insts() const{
+    return boots;
+}
+
+map<string, int> SimOS :: get_label_map() const{
+    return label_map;
 }
