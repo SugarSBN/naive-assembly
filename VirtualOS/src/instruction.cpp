@@ -1,12 +1,13 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-16 10:12:51
- * @LastEditTime: 2022-02-18 09:28:30
- * @FilePath: \naive-assembly\src\instruction.cpp
+ * @LastEditTime: 2022-02-22 20:03:39
+ * @FilePath: \naive-assembly\VirtualOS\src\instruction.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
 #include"../include/instruction.h"
+#include<ctime>
 
 Instruction :: Instruction(Opcode nopt, vector<Operand> noperands){
     opt = nopt;
@@ -191,4 +192,44 @@ Opcode Instruction :: get_opcode() const{
 
 vector<Operand> Instruction :: get_operands() const{
     return operands;
+}
+
+void Instruction :: random_opcode(){
+    Opcode new_opt;
+    srand((int) time (NULL));
+    if (opt < 5){
+        new_opt = Opcode(rand() % 5);
+    }else
+    if (opt < 11){
+        new_opt = Opcode(rand() % 6 + 5);
+    }else
+    if (opt < 13){
+        new_opt = Opcode(rand() % 2 + 11);
+    }else
+    if (opt < 15){
+        new_opt = Opcode(rand() % 2 + 13);
+    }else
+    if (opt < 17){
+        new_opt = Opcode(rand() % 2 + 15);
+    }else return;
+    opt = new_opt;
+}
+
+void Instruction :: random_operand(const Environment &e, int lines_of_the_program){
+    srand((int) time (NULL));
+    int i = rand() % operands.size();
+    if (operands[i].get_type() == Immediate){
+        int n = rand() % ((1 << 16) + (1 << 16) + 1) - (1 << 16);
+        operands[i] = Operand(Immediate, to_string(n));
+    }else
+    if (operands[i].get_type() == Register){
+        operands[i] = Operand(Register, e.random_register());
+    }else
+    if (operands[i].get_type() == Address){
+        operands[i] = Operand(Address, e.random_address());
+    }else
+    if (operands[i].get_type() == Label){
+        int n = rand() % lines_of_the_program;
+        operands[i] = Operand(Label, ".L" + to_string(n));
+    }
 }

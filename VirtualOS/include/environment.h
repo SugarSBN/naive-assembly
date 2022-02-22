@@ -1,8 +1,8 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 15:40:16
- * @LastEditTime: 2022-02-15 19:48:24
- * @FilePath: \naive-assembly\include\environment.h
+ * @LastEditTime: 2022-02-21 20:17:11
+ * @FilePath: \naive-assembly\VirtualOS\include\environment.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
@@ -26,13 +26,17 @@ class Environment{
 
         int query_register(string name) const;
 
-        int query_storage(int address) const ;
+        int query_storage(int address) const;
 
         void set_register(string name, int value);
 
         void set_storage(int address, int value);
 
         friend ostream & operator << (ostream & os, const Environment & e);
+
+        string random_register() const;
+
+        string random_address() const;
 };
 
 #endif

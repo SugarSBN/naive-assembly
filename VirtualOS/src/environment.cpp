@@ -1,13 +1,13 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 16:13:20
- * @LastEditTime: 2022-02-18 09:49:28
- * @FilePath: \naive-assembly\src\environment.cpp
+ * @LastEditTime: 2022-02-22 20:01:41
+ * @FilePath: \naive-assembly\VirtualOS\src\environment.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
 #include"../include/environment.h"
-
+#include<ctime>
 Environment :: Environment(string nname, int storage_size){
     name = nname;
     if (nname == "") return;
@@ -139,4 +139,17 @@ ostream & operator << (ostream & os, const Environment & e){
         os << endl;
     }
     return os;
+}
+
+string Environment :: random_register() const{
+    srand((int) time (NULL));
+    int n = rand() % (general_registers.size() + special_registers.size());
+    if (n < general_registers.size())   return "$" + to_string(n);
+    else return special_registers[n - general_registers.size()].get_name();
+}
+
+string Environment :: random_address() const{
+    srand((int) time (NULL));
+    int n = rand() % storage.size();
+    return to_string(n) + "(" + random_register() + ")";
 }

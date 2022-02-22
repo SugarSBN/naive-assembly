@@ -1,8 +1,8 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 18:03:36
- * @LastEditTime: 2022-02-18 09:27:41
- * @FilePath: \naive-assembly\include\instruction.h
+ * @LastEditTime: 2022-02-22 19:33:54
+ * @FilePath: \naive-assembly\VirtualOS\include\instruction.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
@@ -61,6 +61,10 @@ class Instruction{
 
         vector<Operand> get_operands() const;
 
+        void random_opcode();
+
+        void random_operand(const Environment &e, int lines_of_the_program);
+        
         friend ostream & operator << (ostream & os, const Instruction & i);
 };
 
