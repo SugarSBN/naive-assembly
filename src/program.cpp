@@ -1,12 +1,12 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-19 09:56:43
- * @LastEditTime: 2022-02-22 20:09:06
- * @FilePath: \naive-assembly\MCMC\src\program.cpp
+ * @LastEditTime: 2022-02-23 14:37:39
+ * @FilePath: \naive-assembly\src\program.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
-#include"..\\include\\program.h"
+#include"../include/program.h"
 #include<ctime>
 
 Program :: Program(vector<Instruction> ninsts, map<string, int> label_map){
@@ -82,4 +82,12 @@ void Program :: generate(const Environment &e){
             }
         }
     }
+}
+
+vector<Instruction> Program :: get_insts() const{
+    return insts;
+}
+
+set<int> Program :: get_unused() const{
+    return unused;
 }

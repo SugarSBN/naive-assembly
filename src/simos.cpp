@@ -1,8 +1,8 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 10:27:17
- * @LastEditTime: 2022-02-19 10:12:34
- * @FilePath: \naive-assembly\VirtualOS\src\simos.cpp
+ * @LastEditTime: 2022-02-23 15:28:52
+ * @FilePath: \naive-assembly\src\simos.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
@@ -187,4 +187,32 @@ vector<Instruction> SimOS :: get_insts() const{
 
 map<string, int> SimOS :: get_label_map() const{
     return label_map;
+}
+
+pair<int, Environment> SimOS :: run_program(Program p, vector<pair<string, int> > pre_value){
+    e.reset();
+    boots = p.get_insts();
+    set<int> unused = p.get_unused();
+
+    for (int i = 0;i < boots.size();i++)    e.set_storage(i, boots[i].to_bitcode(label_map));
+    e.set_register("$7", boots.size());
+    e.set_register("PC", 0);
+ 
+    for (int i = 0;i < pre_value.size();i++)    e.set_register(pre_value[i].first, pre_value[i].second);
+    
+    label_map.clear();
+    for (int i = 0;i < boots.size();i++)    label_map[".L" + to_string(i)] = i;
+
+    for (int i = 0;i < boots.size();i++)    if (!unused.count(i)){
+        vector<Operand> ope = boots[i].get_operands();
+        for (int j = 0;j < ope.size();j++)  if (ope[j].get_type() == Address){
+            try{
+                e.query_storage(ope[j].interprete(e, label_map));
+            }catch(string excep){
+                return make_pair(1, e);
+            }
+        }
+        execute_one_command();
+    }else e.set_register("PC", e.query_register("PC") + 1);
+    return make_pair(0, e);
 }

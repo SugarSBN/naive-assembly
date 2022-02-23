@@ -1,7 +1,7 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-15 16:13:20
- * @LastEditTime: 2022-02-22 20:01:41
+ * @LastEditTime: 2022-02-22 20:19:11
  * @FilePath: \naive-assembly\VirtualOS\src\environment.cpp
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
@@ -26,6 +26,7 @@ Environment :: Environment(string nname, int storage_size){
         general_registers.push_back(Register("fp"));
         general_registers.push_back(Register("ra"));
 
+        special_registers.clear();
         special_registers.push_back(Register("PC"));
         special_registers.push_back(Register("HI"));
         special_registers.push_back(Register("LO"));

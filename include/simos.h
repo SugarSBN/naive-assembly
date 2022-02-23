@@ -1,15 +1,14 @@
 /*
  * @Author: SuBonan
  * @Date: 2022-02-17 08:38:23
- * @LastEditTime: 2022-02-19 10:12:01
- * @FilePath: \naive-assembly\VirtualOS\include\simos.h
+ * @LastEditTime: 2022-02-23 15:24:58
+ * @FilePath: \naive-assembly\include\simos.h
  * @Github: https://github.com/SugarSBN
  * これなに、これなに、これない、これなに、これなに、これなに、ねこ！ヾ(*´∀｀*)ﾉ
  */
 #ifndef _SIMOS_H
 #define _SIMOS_H
-
-#include"environment.h"
+#include"../include/program.h"
 #include"instruction.h"
 #include"parsor.h"
 #include<vector>
@@ -39,6 +38,8 @@ class SimOS{
         map<string, int> get_label_map() const;
 
         Environment get_env() const;
+
+        pair<int, Environment> run_program(Program p, vector<pair<string, int> > pre_value);
     
 };
 
